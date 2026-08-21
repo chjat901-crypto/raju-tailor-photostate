@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="t3">
+<title id="t3">Placeholder: Finished Clothing</title>
+<defs>
+<linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#141826"/><stop offset="1" stop-color="#0a0c14"/>
+</linearGradient>
+<linearGradient id="gold3" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#f0c878"/><stop offset="1" stop-color="#c9962f"/>
+</linearGradient>
+</defs>
+<rect width="800" height="600" fill="url(#bg3)"/>
+<!-- rail -->
+<line x1="120" y1="150" x2="680" y2="150" stroke="url(#gold3)" stroke-width="3" opacity="0.7"/>
+<g fill="none" stroke="url(#gold3)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+<!-- hanger + shirt 1 -->
+<g transform="translate(260,150)">
+<path d="M0 0 C 0 -20 20 -20 20 0 M -30 20 L 0 0 L 30 20" />
+<path d="M-60 30 L -30 20 L -10 40 L 0 30 L 10 40 L 30 20 L 60 30 L 55 220 L -55 220 Z"/>
+<path d="M-10 40 L -10 90 M 10 40 L 10 90" opacity="0.4"/>
+</g>
+<!-- hanger + shirt 2 -->
+<g transform="translate(430,150)">
+<path d="M0 0 C 0 -20 20 -20 20 0 M -30 20 L 0 0 L 30 20" />
+<path d="M-55 28 L -30 20 L -12 45 L 0 34 L 12 45 L 30 20 L 55 28 L 48 240 L -48 240 Z"/>
+</g>
+<!-- hanger + kurta 3 -->
+<g transform="translate(600,150)">
+<path d="M0 0 C 0 -20 20 -20 20 0 M -30 20 L 0 0 L 30 20" />
+<path d="M-50 26 L -30 20 L -14 42 L 0 32 L 14 42 L 30 20 L 50 26 L 44 260 Q 0 280 -44 260 Z"/>
+</g>
+</g>
+<text x="400" y="560" font-family="Georgia, serif" font-size="20" fill="#c9962f" text-anchor="middle" opacity="0.65">Placeholder — Finished Clothing</text>
+</svg>

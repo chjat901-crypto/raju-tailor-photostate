@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="t4">
+<title id="t4">Placeholder: Printing Services</title>
+<defs>
+<linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#151a29"/><stop offset="1" stop-color="#0a0c14"/>
+</linearGradient>
+<linearGradient id="gold4" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#f0c878"/><stop offset="1" stop-color="#c9962f"/>
+</linearGradient>
+</defs>
+<rect width="800" height="600" fill="url(#bg4)"/>
+<g fill="none" stroke="url(#gold4)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+<!-- printer body -->
+<rect x="230" y="260" width="340" height="140" rx="14"/>
+<rect x="270" y="230" width="260" height="50" rx="8" opacity="0.7"/>
+<circle cx="500" cy="290" r="6" fill="url(#gold4)"/>
+<!-- output tray -->
+<rect x="270" y="400" width="260" height="18" rx="4" opacity="0.6"/>
+<!-- paper coming out -->
+<rect x="290" y="330" width="220" height="130" rx="4" fill="#0a0c14" stroke-width="2"/>
+<line x1="315" y1="365" x2="480" y2="365" stroke-width="2" opacity="0.6"/>
+<line x1="315" y1="385" x2="480" y2="385" stroke-width="2" opacity="0.6"/>
+<line x1="315" y1="405" x2="440" y2="405" stroke-width="2" opacity="0.6"/>
+<!-- feed tray -->
+<path d="M260 260 L 300 190 L 500 190 L 540 260" opacity="0.6"/>
+</g>
+<text x="400" y="560" font-family="Georgia, serif" font-size="20" fill="#c9962f" text-anchor="middle" opacity="0.65">Placeholder — Printing</text>
+</svg>

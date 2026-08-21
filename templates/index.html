@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ business.name }} — Tailoring, Photostat, Printing & Document Services</title>
+<meta name="description" content="{{ business.name }}: {{ business.tagline }} Custom tailoring, photostat, printing, scanning and passport photo services, all under one roof.">
+<meta name="theme-color" content="#0b0e17">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ business.name }}">
+<meta property="og:description" content="{{ business.tagline }}">
+<meta property="og:type" content="business.business">
+
+<link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
+
+<!-- Fonts: display serif for headings, Inter for body copy, Outfit for UI/labels -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- ===================== PRELOADER ===================== -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader-mark">
+    <div class="preloader-ring"></div>
+    <span>{{ business.name }}</span>
+  </div>
+</div>
+
+<!-- ===================== AMBIENT BACKGROUND (fixed, behind everything) ===================== -->
+<div class="bg-fixed-layers" aria-hidden="true">
+  <div class="ambient-glow">
+    <span class="glow-a"></span>
+    <span class="glow-b"></span>
+    <span class="glow-c"></span>
+  </div>
+  <canvas id="petal-canvas"></canvas>
+  <canvas id="particle-canvas"></canvas>
+</div>
+
+<!-- ===================== NAVIGATION ===================== -->
+<header class="navbar" id="navbar">
+  <a href="#home" class="nav-brand">
+    <span class="mark">RT</span>
+    <span>
+      {{ business.name }}
+      <small>Tailoring &amp; Document Services</small>
+    </span>
+  </a>
+
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="home">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="{{ url_for('static', filename='images/hero-bg.svg') }}" alt="">
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="status-pill">
+          <span class="status-dot" aria-hidden="true"></span>
+          {{ business.status }}
+        </div>
+
+        <h1>{{ business.name.split(' & ')[0] }} &amp; <span class="accent">{{ business.name.split(' & ')[1] }}</span></h1>
+        <p class="hero-sub">{{ business.tagline }}</p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Contact Us</a>
+          <a href="#services" class="btn btn-ghost">Our Services</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-cue" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="line"></span>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow" style="justify-content:center">What We Offer</div>
+        <h2 class="section-title">Everything under <em>one roof</em></h2>
+        <p class="section-sub" style="margin-left:auto;margin-right:auto">From a perfectly tailored fit to a same-day document print, five services handled with the same care.</p>
+      </div>
+
+      <div class="services-grid">
+        {% for s in services %}
+        <div class="service-card glass reveal" style="transition-delay: {{ loop.index0 * 80 }}ms">
+          <div class="service-icon" aria-hidden="true">{{ s.tag }}</div>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.desc }}</p>
+          <ul class="service-points">
+            {% for p in s.points %}
+            <li>{{ p }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-wrap">
+        <div class="about-copy reveal">
+          <div class="eyebrow">About Us</div>
+          <h2 class="section-title">Craft and convenience, <em>side by side</em></h2>
+          <p>{{ business.name }} brings together two everyday essentials — quality tailoring and fast document services — in one welcoming local shop. Whether it's a garment that needs a tailor's precision or a document that needs printing in the next few minutes, it's handled here.</p>
+          <p>Every piece of clothing is stitched and altered with care, and every photostat, print or scan is turned around quickly without cutting corners. It's the kind of shop a neighbourhood relies on.</p>
+
+          <div class="stats-row">
+            {% for stat in business.stats %}
+            <div class="stat-card glass">
+              <div class="stat-number" data-count-to="{{ stat.value }}" data-suffix="{{ stat.suffix }}">0</div>
+              <div class="stat-label">{{ stat.label }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="about-visual reveal">
+          <img src="{{ url_for('static', filename='images/sewing-machine.svg') }}" alt="Illustration of a sewing machine, representing the tailoring side of the shop">
+          <div class="about-badge glass">
+            <span style="font-size:1.4rem">🧵</span>
+            <span>
+              <strong>Since day one</strong>
+              <span>Tailoring &amp; document care, done right</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALLERY ===================== -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow" style="justify-content:center">Gallery</div>
+        <h2 class="section-title">A look <em>inside the shop</em></h2>
+        <p class="section-sub" style="margin-left:auto;margin-right:auto">Placeholder artwork below — swap in real photos of the shop, machines and finished work any time.</p>
+      </div>
+
+      <div class="gallery-grid reveal">
+        {% for g in gallery %}
+        <div class="gallery-item" data-index="{{ loop.index0 }}" data-title="{{ g.title }}" data-category="{{ g.category }}" data-img="{{ url_for('static', filename='images/' + g.id + '.svg') }}" tabindex="0" role="button" aria-label="View {{ g.title }} image">
+          <img src="{{ url_for('static', filename='images/' + g.id + '.svg') }}" alt="Placeholder image representing {{ g.title|lower }}" loading="lazy">
+          <div class="zoom-hint" aria-hidden="true">⤢</div>
+          <div class="gallery-caption">
+            <span>{{ g.category }}</span>
+            <strong>{{ g.title }}</strong>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow" style="justify-content:center">Get In Touch</div>
+        <h2 class="section-title">Visit, call, or <em>message us</em></h2>
+        <p class="section-sub" style="margin-left:auto;margin-right:auto">All contact details below are placeholders — replace them with the real shop information.</p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="reveal">
+          <div class="contact-card glass" style="margin-bottom:1.4rem">
+            <div class="contact-icon" aria-hidden="true">📍</div>
+            <div>
+              <h4>Shop Address</h4>
+              <p>{{ business.address }}</p>
+            </div>
+          </div>
+
+          <div class="contact-card glass" style="margin-bottom:1.4rem">
+            <div class="contact-icon" aria-hidden="true">📞</div>
+            <div>
+              <h4>Phone</h4>
+              <p>{{ business.phone_display }}</p>
+            </div>
+          </div>
+
+          <div class="contact-card glass" style="margin-bottom:1.4rem">
+            <div class="contact-icon" aria-hidden="true">🕐</div>
+            <div>
+              <h4>Opening Hours</h4>
+              <p>{{ business.hours }}</p>
+            </div>
+          </div>
+
+          <div class="contact-card glass">
+            <div class="contact-icon" aria-hidden="true">💬</div>
+            <div>
+              <h4>WhatsApp</h4>
+              <p>{{ business.whatsapp_display }}</p>
+            </div>
+          </div>
+
+          <div class="contact-actions">
+            <a href="tel:{{ business.phone_tel }}" class="btn btn-primary">Call Now</a>
+            <a href="https://wa.me/{{ business.whatsapp_number }}?text={{ business.whatsapp_message | urlencode }}" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp</a>
+            <a href="https://www.google.com/maps/search/?api=1&query={{ (business.map_query or business.name) | urlencode }}" target="_blank" rel="noopener" class="btn btn-ghost">Get Directions</a>
+          </div>
+        </div>
+
+        <form class="contact-form-card glass reveal" id="contact-form" novalidate>
+          <div class="form-row">
+            <label for="cf-name">Your Name</label>
+            <input type="text" id="cf-name" name="name" placeholder="Enter your name" required autocomplete="name">
+          </div>
+          <div class="form-row">
+            <label for="cf-phone">Phone Number</label>
+            <input type="tel" id="cf-phone" name="phone" placeholder="Enter your phone number" autocomplete="tel">
+          </div>
+          <div class="form-row">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" placeholder="Tell us what you need..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center">Send Message</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <!-- ===================== MAP ===================== -->
+      <div class="map-card glass reveal" style="margin-top:1.4rem">
+        <div class="map-placeholder">
+          <div class="pin" aria-hidden="true"><span>📍</span></div>
+<iframe src="https://www.google.com/maps?q=30.6691625,74.7972752&output=embed" width="100%" height="350" style="border:0; border-radius:20px;" loading="lazy" allowfullscreen></iframe>        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="nav-brand">
+          <span class="mark">RT</span>
+          <span>{{ business.name }} <small>Tailoring &amp; Document Services</small></span>
+        </a>
+        <p>{{ business.tagline }}</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          {% for s in services %}
+          <li><a href="#services">{{ s.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><p>{{ business.address }}</p></li>
+          <li><p>{{ business.phone_display }}</p></li>
+          <li><p>{{ business.email }}</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {{ business.year }} {{ business.name }}. All rights reserved.</span>
+      <span>Built for a local business, one careful stitch at a time.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close preview">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">‹</button>
+  <div class="lightbox-inner">
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-cap" id="lightbox-cap"></div>
+  </div>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">›</button>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
